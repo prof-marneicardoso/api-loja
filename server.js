@@ -19,6 +19,7 @@ app.get("/", (request, response) => {
 // Cadastra um novo produto
 app.post("/produtos/registro", validarDados, cadastrarProduto);
 
+app.get("/produtos/", buscarProdutos);
 
 // ===== CRIAR OS DEMAIS MÉTODOS DA API ===== //
 
@@ -103,6 +104,19 @@ async function cadastrarProduto(request, response) {
     }
 }
 
+async function buscarProdutos(request, response) {
+    // Lê o arquivo atual
+    const dados = await fs.readFile(nomeArquivo, "utf-8") || [];
+
+    // Converte os dados para JSON
+    const listaProdutos = dados.trim() ? JSON.parse(dados) : [];
+
+    // Response
+    response.status(200).json({
+        // mensagem: "Lista de Produtos",
+        data: listaProdutos
+    });
+}
 
 
 // ===== RODA O SERVER ===== //
