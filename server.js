@@ -19,9 +19,11 @@ app.get("/", (request, response) => {
 // Cadastra um novo produto
 app.post("/produtos/registro", validarDados, cadastrarProduto);
 
+// Busca todos os produtos
 app.get("/produtos/", buscarProdutos);
 
-app.get("/produtos/:id", buscarUmProduto);
+// Busca um produto por ID
+app.get("/produtos", buscarUmProduto);
 
 // ===== CRIAR OS DEMAIS MÉTODOS DA API ===== //
 
@@ -127,7 +129,8 @@ async function buscarUmProduto(request, response) {
     const listaProdutos = dados.trim() ? JSON.parse(dados) : [];
 
     // Busca o produto dentro da lista
-    const produto = listaProdutos.find((produto) => produto.id == request.params.id);
+    const produto = listaProdutos.find((produto) => produto.id == request.query.id);
+    // const produto = listaProdutos.find((produto) => produto.id == request.params.id);
 
     if (!produto) {
         return response.status(404).json(
