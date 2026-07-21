@@ -23,7 +23,7 @@ app.post("/produtos/registro", validarDados, cadastrarProduto);
 app.get("/produtos/", buscarProdutos);
 
 // Busca um produto por ID
-app.get("/produtos", buscarUmProduto);
+app.get("/produtos/:id", buscarUmProduto);
 
 // ===== CRIAR OS DEMAIS MÉTODOS DA API ===== //
 
