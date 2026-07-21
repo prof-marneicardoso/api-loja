@@ -21,9 +21,11 @@ app.post("/produtos/registro", validarDados, cadastrarProduto);
 
 app.get("/produtos/", buscarProdutos);
 
+app.get("/produtos/:id", buscarUmProduto);
+
 // ===== CRIAR OS DEMAIS MÉTODOS DA API ===== //
 
-// BUSCAR TODOS (GET)
+// OK - BUSCAR TODOS (GET)
 // BUSCAR PELO ID (GET: ID)
 // EDITAR PELO ID (PUT: ID)
 // EXCLUIR PELO ID (DELETE: ID)
@@ -113,11 +115,33 @@ async function buscarProdutos(request, response) {
 
     // Response
     response.status(200).json({
-        // mensagem: "Lista de Produtos",
         data: listaProdutos
     });
 }
 
+async function buscarUmProduto(request, response) {
+    // Lê o arquivo atual
+    const dados = await fs.readFile(nomeArquivo, "utf-8") || [];
+
+    // Converte os dados para JSON
+    const listaProdutos = dados.trim() ? JSON.parse(dados) : [];
+
+    // Busca o produto dentro da lista
+    const produto = listaProdutos.find((produto) => produto.id == request.params.id);
+
+    if (!produto) {
+        return response.status(404).json(
+            {
+                mensagem: "Produto não encontrado"
+            }
+        );
+    }
+
+    // Response
+    response.status(200).json({
+        data: produto
+    });
+}
 
 // ===== RODA O SERVER ===== //
 
