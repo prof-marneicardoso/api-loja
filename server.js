@@ -129,8 +129,7 @@ async function buscarUmProduto(request, response) {
     const listaProdutos = dados.trim() ? JSON.parse(dados) : [];
 
     // Busca o produto dentro da lista
-    const produto = listaProdutos.find((produto) => produto.id == request.query.id);
-    // const produto = listaProdutos.find((produto) => produto.id == request.params.id);
+    const produto = listaProdutos.find((produto) => produto.id == request.params.id);
 
     if (!produto) {
         return response.status(404).json(
