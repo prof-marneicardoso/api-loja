@@ -1,6 +1,7 @@
 // Importa o Express e FS
 import express from "express";
 import fs from "fs/promises";
+import cors from "cors";
 
 const porta = 3000;
 const app = express();
@@ -8,7 +9,7 @@ const nomeArquivo = "listaProdutos.json";
 
 // Converte para JSON
 app.use(express.json());
-
+app.use(cors());
 
 // ===== ROTAS ===== //
 
@@ -25,10 +26,11 @@ app.get("/produtos/", buscarProdutos);
 // Busca um produto por ID
 app.get("/produtos/:id", buscarUmProduto);
 
+// Exclui um produto por ID
+app.delete("/produtos/:id", excluirUmProduto);
+
 // ===== CRIAR OS DEMAIS MÉTODOS DA API ===== //
 
-// OK - BUSCAR TODOS (GET)
-// BUSCAR PELO ID (GET: ID)
 // EDITAR PELO ID (PUT: ID)
 // EXCLUIR PELO ID (DELETE: ID)
 
@@ -93,8 +95,7 @@ async function cadastrarProduto(request, response) {
         listaProdutos.push(novoProduto);
         
         // Adiciona e grava de volta no arquivo
-        await fs.writeFile(nomeArquivo, JSON.stringify(listaProdutos));
-        // await fs.writeFile(nomeArquivo, JSON.stringify(listaProdutos, null, 2   ));
+        await fs.writeFile(nomeArquivo, JSON.stringify(listaProdutos, null, 2));
 
         // Response
         response.status(201).json({
@@ -117,7 +118,7 @@ async function buscarProdutos(request, response) {
 
     // Response
     response.status(200).json({
-        data: listaProdutos
+        dados: listaProdutos
     });
 }
 
@@ -142,6 +143,37 @@ async function buscarUmProduto(request, response) {
     // Response
     response.status(200).json({
         data: produto
+    });
+}
+
+async function excluirUmProduto(request, response) {
+    // Lê o arquivo atual
+    const dados = await fs.readFile(nomeArquivo, "utf-8") || [];
+
+    // Converte os dados para JSON
+    const listaProdutos = dados.trim() ? JSON.parse(dados) : [];
+
+    // Verifica se o produto existe na lista
+    const produto = listaProdutos.find((produto) => produto.id == request.params.id);
+
+    if (!produto) {
+        return response.status(404).json(
+            {
+                mensagem: "Produto não encontrado"
+            }
+        );
+    }
+
+    // Cria uma nova lista SEM o produto com o ID informado
+    const novaLista = listaProdutos.filter((produto) => produto.id != request.params.id);
+
+    // Grava a nova lista (já sem o produto) de volta no arquivo
+    await fs.writeFile(nomeArquivo, JSON.stringify(novaLista, null, 2));
+
+    // Response
+    response.status(200).json({
+        mensagem: "Produto excluído com sucesso",
+        dados: produto // Mostra o produto excluído
     });
 }
 

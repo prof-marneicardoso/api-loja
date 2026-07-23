@@ -1,1 +1,38 @@
-[{"id":1784299565218,"nome":"Café","descricao":"Café puro, moído na hora","fotos":[],"preco":7,"categoria":"bebida","disponivel":true,"createdAt":"Fri Jul 17 2026 11:46:05 GMT-0300 (Horário Padrão de Brasília)"},{"id":1784299917882,"nome":"Cappuccino","descricao":"Café espresso, creme, chocolate e raspas de canela","fotos":[],"preco":15,"categoria":"bebida","disponivel":true,"createdAt":"Fri Jul 17 2026 11:51:57 GMT-0300 (Horário Padrão de Brasília)"}]
+[
+  {
+    "id": 1784765167320,
+    "nome": "Picanha na Brasa",
+    "descricao": "Picanha macia e suculenta, grelhada na brasa. Acompanha arroz, farofa e vinagrete.",
+    "fotos": [
+      "https://cdn.pixabay.com/photo/2020/06/17/21/54/meat-5311300_1280.jpg"
+    ],
+    "preco": 58,
+    "categoria": "comida",
+    "disponivel": true,
+    "createdAt": "Wed Jul 22 2026 21:06:07 GMT-0300 (Horário Padrão de Brasília)"
+  },
+  {
+    "id": 1784765614991,
+    "nome": "Batata rústica",
+    "descricao": "Batata rústica fritas com sal e páprica.",
+    "fotos": [
+      "https://cdn.pixabay.com/photo/2022/08/27/13/56/french-fries-7414513_1280.jpg"
+    ],
+    "preco": 30,
+    "categoria": "comida",
+    "disponivel": true,
+    "createdAt": "Wed Jul 22 2026 21:13:34 GMT-0300 (Horário Padrão de Brasília)"
+  },
+  {
+    "id": 1784765757147,
+    "nome": "Batata frita",
+    "descricao": "Batata palito fritas com sal.",
+    "fotos": [
+      "https://cdn.pixabay.com/photo/2022/08/27/13/56/french-fries-7414513_1280.jpg"
+    ],
+    "preco": 20,
+    "categoria": "comida",
+    "disponivel": true,
+    "createdAt": "Wed Jul 22 2026 21:15:57 GMT-0300 (Horário Padrão de Brasília)"
+  }
+]
