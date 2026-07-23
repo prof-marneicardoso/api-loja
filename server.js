@@ -18,16 +18,20 @@ app.get("/", (request, response) => {
 });
 
 // Cadastra um novo produto
-app.post("/produtos/registro", validarDados, cadastrarProduto);
+// app.post("/produtos/registro", validarDados, cadastrarProduto);
+app.post("produtos/registro", validarDados, cadastrarProduto);
 
 // Busca todos os produtos
-app.get("/produtos/", buscarProdutos);
+// app.get("/produtos/", buscarProdutos);
+app.get("produtos/", buscarProdutos);
 
 // Busca um produto por ID
-app.get("/produtos/:id", buscarUmProduto);
+// app.get("/produtos/:id", buscarUmProduto);
+app.get("produtos/:id", buscarUmProduto);
 
 // Exclui um produto por ID
-app.delete("/produtos/:id", excluirUmProduto);
+// app.delete("/produtos/:id", excluirUmProduto);
+app.delete("produtos/:id", excluirUmProduto);
 
 // ===== CRIAR OS DEMAIS MÉTODOS DA API ===== //
 
