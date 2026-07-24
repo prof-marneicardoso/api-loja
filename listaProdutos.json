@@ -24,7 +24,7 @@
     "createdAt": "Wed Jul 22 2026 21:13:34 GMT-0300 (Horário Padrão de Brasília)"
   },
   {
-    "id": 1784765757147,
+    "id": 1784894704285,
     "nome": "Batata frita",
     "descricao": "Batata palito fritas com sal.",
     "fotos": [
@@ -33,6 +33,6 @@
     "preco": 20,
     "categoria": "comida",
     "disponivel": true,
-    "createdAt": "Wed Jul 22 2026 21:15:57 GMT-0300 (Horário Padrão de Brasília)"
+    "createdAt": "Fri Jul 24 2026 09:05:04 GMT-0300 (Horário Padrão de Brasília)"
   }
 ]
